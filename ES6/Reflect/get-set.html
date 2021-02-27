@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>get</title>
+	</head>
+	<body>
+    <script>
+      // get
+      let target = { test: 1 } // 对象
+      let name = 'test' // 属性名
+      Reflect.get(target, name, receiver)
+      
+      // receiver 当属性是getter形式时，可以指定它里面的this指向
+      var myObject = {
+        foo: 1,
+        bar: 2,
+        get baz() {
+          return this.foo + this.bar;
+        },
+      }
+      var myReceiverObject = {
+        foo: 4,
+        bar: 4,
+      }
+      // 此时getter里的this指向myReceiverObject
+      Reflect.get(myObject, 'baz', myReceiverObject) // 8
+      
+      // set同理
+      let target = { test: 1 } // 对象
+      let name = 'test' // 属性名
+      Reflect.get(target, name, 1, receiver)
+    </script>
+	</body>
+</html>

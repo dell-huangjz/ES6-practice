@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>defineProperty</title>
+  </head>
+  <body>
+    <script>
+      let target = {}
+      let property = 'test'
+      let attributes = {}
+      console.log('--------旧写法---------')
+      try {
+        Object.defineProperty(target, property, attributes);
+        // success
+      } catch (e) {
+        // failure
+      }
+      console.log('无法定义属性时，Object.defineProperty会抛出错误')
+      console.log('--------新写法---------')
+      if (Reflect.defineProperty(target, property, attributes)) {
+        // success
+      } else {
+        // failure
+      }
+      console.log('Reflect.defineProperty会返回false')
+      console.log('--------eg---------')
+      let obj = {}
+      Reflect.defineProperty(obj, 'test', {
+        value: 1, // 值
+        configurable: false, // 能否通过delete删除属性从而重新定义属性
+        enumerable: false, // 表示能否通过for-in循环返回属性
+        writable: false, // 表示能否修改属性的值
+      })
+      console.log(obj)
+      console.log('当configurable为false时，writable可以从true改为false，反之不行')
+    </script>
+  </body>
+</html>

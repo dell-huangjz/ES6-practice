@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>has</title>
+  </head>
+  <body>
+    <script>
+      console.log('--------旧写法---------')
+      'assign' in Object // true
+      console.log('命令式写法')
+      console.log('--------新写法---------')
+      Reflect.has(Object, 'assign') // true
+      console.log('函数式写法')
+    </script>
+  </body>
+</html>
